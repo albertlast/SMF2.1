@@ -3,43 +3,45 @@
 # Add steps that run tests, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/vsts/pipelines/languages/php
 
-pool:
-  vmImage: 'Ubuntu 16.04'
+jobs:
+- jobs: 'Test'
+  pool:
+    vmImage: 'Ubuntu 16.04'
 
-# Run the pipeline with multiple PHP versions
-strategy:
-  matrix:
-    Php70:
-      php.version: '7.0'
-    Php71:
-      php.version: '7.1'
-    Phpn72:
-      php.version: '7.2'
-    Php56:
-      php.version: '5.6'
-  # Increase the maxParallel value to simultaneously run the job for all versions in the matrix (max 10 for free open-source)
-  maxParallel: 4
-variables:
-  phpVersion: 7.2
+  # Run the pipeline with multiple PHP versions
+  strategy:
+    matrix:
+      Php70:
+        php.version: '7.0'
+      Php71:
+        php.version: '7.1'
+      Phpn72:
+        php.version: '7.2'
+      Php56:
+        php.version: '5.6'
+    # Increase the maxParallel value to simultaneously run the job for all versions in the matrix (max 10 for free open-source)
+    maxParallel: 4
+  variables:
+    phpVersion: 7.2
 
-steps:
-- script: |
-    sudo update-alternatives --set php /usr/bin/php$(php.version)
-    sudo update-alternatives --set phar /usr/bin/phar$(php.version)
-    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(php.version)
-    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(php.version)
-    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(php.version)
-    php -version
-  displayName: 'Use PHP version $(php.version)'
+  steps:
+  - script: |
+      sudo update-alternatives --set php /usr/bin/php$(php.version)
+      sudo update-alternatives --set phar /usr/bin/phar$(php.version)
+      sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(php.version)
+      sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(php.version)
+      sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(php.version)
+      php -version
+    displayName: 'Use PHP version $(php.version)'
 
-#- script: composer install --no-interaction --prefer-dist
-#  displayName: 'composer install'
+  #- script: composer install --no-interaction --prefer-dist
+  #  displayName: 'composer install'
 
-- script: |
-    git submodule foreach git pull origin master
-    if find . -name "*.php" ! -path "./vendor/*" -exec php -l {} 2>&1 \; | grep "syntax error, unexpected"; then exit 1; fi
-    if php other/buildTools/check-signed-off.php travis | grep "Error:"; then php other/buildTools/check-signed-off.php travis; exit 1; fi
-    if find . -name "*.php" -exec php other/buildTools/check-smf-license.php {} 2>&1 \; | grep "Error:"; then exit 1; fi
-    if find . -name "./Themes/default/languages/*.english.php" -exec php other/buildTools/check-smf-langauge.php {} 2>&1 \; | grep "Error:"; then exit 1; fi
-    if find . -name "*.php" -exec php other/buildTools/check-eof.php {} 2>&1 \; | grep "Error:"; then exit 1; fi
-  displayName: 'Basic Checks'
+  - script: |
+      git submodule foreach git pull origin master
+      if find . -name "*.php" ! -path "./vendor/*" -exec php -l {} 2>&1 \; | grep "syntax error, unexpected"; then exit 1; fi
+      if php other/buildTools/check-signed-off.php travis | grep "Error:"; then php other/buildTools/check-signed-off.php travis; exit 1; fi
+      if find . -name "*.php" -exec php other/buildTools/check-smf-license.php {} 2>&1 \; | grep "Error:"; then exit 1; fi
+      if find . -name "./Themes/default/languages/*.english.php" -exec php other/buildTools/check-smf-langauge.php {} 2>&1 \; | grep "Error:"; then exit 1; fi
+      if find . -name "*.php" -exec php other/buildTools/check-eof.php {} 2>&1 \; | grep "Error:"; then exit 1; fi
+    displayName: 'Basic Checks'
