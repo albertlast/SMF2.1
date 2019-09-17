@@ -242,9 +242,9 @@ CREATE INDEX {$db_prefix}ban_items_id_ban_ip ON {$db_prefix}ban_items (ip_low,ip
 #
 
 CREATE TABLE {$db_prefix}board_permissions (
-	id_group smallint NOT NULL DEFAULT '0',
-	id_profile smallint NOT NULL DEFAULT '0',
-	permission varchar(30) NOT NULL DEFAULT '',
+	id_group smallint NOT NULL,
+	id_profile smallint NOT NULL,
+	permission varchar(30) NOT NULL,
 	add_deny smallint NOT NULL DEFAULT '1',
 	PRIMARY KEY (id_group, id_profile, permission)
 );
@@ -298,7 +298,7 @@ CREATE INDEX {$db_prefix}boards_member_groups ON {$db_prefix}boards (member_grou
 
 CREATE TABLE {$db_prefix}board_permissions_view
 (
-		id_group smallint NOT NULL DEFAULT '0',
+		id_group smallint NOT NULL,
 		id_board smallint NOT NULL,
 		deny smallint NOT NULL,
 		PRIMARY KEY (id_group, id_board, deny)
@@ -424,8 +424,8 @@ CREATE UNIQUE INDEX {$db_prefix}custom_fields_col_name ON {$db_prefix}custom_fie
 #
 
 CREATE TABLE {$db_prefix}group_moderators (
-	id_group smallint NOT NULL DEFAULT '0',
-	id_member int NOT NULL DEFAULT '0',
+	id_group smallint NOT NULL,
+	id_member int NOT NULL,
 	PRIMARY KEY (id_group, id_member)
 );
 
@@ -508,8 +508,8 @@ CREATE INDEX {$db_prefix}log_banned_log_time ON {$db_prefix}log_banned (log_time
 #
 
 CREATE TABLE {$db_prefix}log_boards (
-	id_member int NOT NULL DEFAULT '0',
-	id_board smallint NOT NULL DEFAULT '0',
+	id_member int NOT NULL,
+	id_board smallint NOT NULL,
 	id_msg bigint NOT NULL DEFAULT '0',
 	PRIMARY KEY (id_member, id_board)
 );
@@ -598,7 +598,7 @@ CREATE INDEX {$db_prefix}log_errors_ip ON {$db_prefix}log_errors (ip);
 CREATE UNLOGGED TABLE {$db_prefix}log_floodcontrol (
 	ip inet,
 	log_time bigint NOT NULL DEFAULT '0',
-	log_type varchar(8) NOT NULL DEFAULT 'post',
+	log_type varchar(8) NOT NULL,
 	PRIMARY KEY (ip, log_type)
 );
 
@@ -637,8 +637,8 @@ CREATE INDEX {$db_prefix}log_group_requests_id_member ON {$db_prefix}log_group_r
 #
 
 CREATE TABLE {$db_prefix}log_mark_read (
-	id_member int NOT NULL DEFAULT '0',
-	id_board smallint NOT NULL DEFAULT '0',
+	id_member int NOT NULL,
+	id_board smallint NOT NULL,
 	id_msg bigint NOT NULL DEFAULT '0',
 	PRIMARY KEY (id_member, id_board)
 );
@@ -665,9 +665,9 @@ CREATE TABLE {$db_prefix}log_member_notices (
 #
 
 CREATE TABLE {$db_prefix}log_notify (
-	id_member int NOT NULL DEFAULT '0',
-	id_topic int NOT NULL DEFAULT '0',
-	id_board smallint NOT NULL DEFAULT '0',
+	id_member int NOT NULL,
+	id_topic int NOT NULL,
+	id_board smallint NOT NULL,
 	sent smallint NOT NULL DEFAULT '0',
 	PRIMARY KEY (id_member, id_topic, id_board)
 );
@@ -683,7 +683,7 @@ CREATE INDEX {$db_prefix}log_notify_id_topic ON {$db_prefix}log_notify (id_topic
 #
 
 CREATE UNLOGGED TABLE {$db_prefix}log_online (
-	session varchar(128) NOT NULL DEFAULT '',
+	session varchar(128) NOT NULL,
 	log_time bigint NOT NULL DEFAULT '0',
 	id_member int NOT NULL DEFAULT '0',
 	id_spider smallint NOT NULL DEFAULT '0',
@@ -840,8 +840,8 @@ CREATE TABLE {$db_prefix}log_scheduled_tasks (
 #
 
 CREATE TABLE {$db_prefix}log_search_messages (
-	id_search smallint NOT NULL DEFAULT '0',
-	id_msg bigint NOT NULL DEFAULT '0',
+	id_search smallint NOT NULL,
+	id_msg bigint NOT NULL,
 	PRIMARY KEY (id_search, id_msg)
 );
 
@@ -850,8 +850,8 @@ CREATE TABLE {$db_prefix}log_search_messages (
 #
 
 CREATE TABLE {$db_prefix}log_search_results (
-	id_search smallint NOT NULL DEFAULT '0',
-	id_topic int NOT NULL DEFAULT '0',
+	id_search smallint NOT NULL,
+	id_topic int NOT NULL,
 	id_msg bigint NOT NULL DEFAULT '0',
 	relevance smallint NOT NULL DEFAULT '0',
 	num_matches smallint NOT NULL DEFAULT '0',
@@ -879,8 +879,8 @@ CREATE INDEX {$db_prefix}log_search_subjects_id_topic ON {$db_prefix}log_search_
 #
 
 CREATE TABLE {$db_prefix}log_search_topics (
-	id_search smallint NOT NULL DEFAULT '0',
-	id_topic int NOT NULL DEFAULT '0',
+	id_search smallint NOT NULL,
+	id_topic int NOT NULL,
 	PRIMARY KEY (id_search, id_topic)
 );
 
@@ -916,8 +916,8 @@ CREATE INDEX {$db_prefix}log_spider_hits_processed ON {$db_prefix}log_spider_hit
 #
 
 CREATE TABLE {$db_prefix}log_spider_stats (
-	id_spider smallint NOT NULL DEFAULT '0',
-	page_hits smallint NOT NULL DEFAULT '0',
+	id_spider smallint NOT NULL,
+	page_hits smallint NOT NULL,
 	last_seen bigint NOT NULL DEFAULT '0',
 	stat_date date NOT NULL DEFAULT '1004-01-01',
 	PRIMARY KEY (stat_date, id_spider)
@@ -964,8 +964,8 @@ CREATE INDEX {$db_prefix}log_subscribed_id_member ON {$db_prefix}log_subscribed 
 #
 
 CREATE TABLE {$db_prefix}log_topics (
-	id_member int NOT NULL DEFAULT '0',
-	id_topic int NOT NULL DEFAULT '0',
+	id_member int NOT NULL,
+	id_topic int NOT NULL,
 	id_msg bigint NOT NULL DEFAULT '0',
 	unwatched int NOT NULL DEFAULT '0',
 	PRIMARY KEY (id_member, id_topic)
@@ -1224,8 +1224,8 @@ CREATE INDEX {$db_prefix}messages_likes ON {$db_prefix}messages (likes DESC);
 #
 
 CREATE TABLE {$db_prefix}moderators (
-	id_board smallint NOT NULL DEFAULT '0',
-	id_member int NOT NULL DEFAULT '0',
+	id_board smallint NOT NULL,
+	id_member int NOT NULL,
 	PRIMARY KEY (id_board, id_member)
 );
 
@@ -1234,8 +1234,8 @@ CREATE TABLE {$db_prefix}moderators (
 #
 
 CREATE TABLE {$db_prefix}moderator_groups (
-	id_board smallint NOT NULL DEFAULT '0',
-	id_group smallint NOT NULL DEFAULT '0',
+	id_board smallint NOT NULL,
+	id_group smallint NOT NULL,
 	PRIMARY KEY (id_board, id_group)
 );
 
@@ -1278,8 +1278,8 @@ CREATE TABLE {$db_prefix}permission_profiles (
 #
 
 CREATE TABLE {$db_prefix}permissions (
-	id_group smallint NOT NULL DEFAULT '0',
-	permission varchar(30) NOT NULL DEFAULT '',
+	id_group smallint NOT NULL,
+	permission varchar(30) NOT NULL,
 	add_deny smallint NOT NULL DEFAULT '1',
 	PRIMARY KEY (id_group, permission)
 );
@@ -1336,8 +1336,8 @@ CREATE TABLE {$db_prefix}pm_labels (
 #
 
 CREATE TABLE {$db_prefix}pm_labeled_messages (
-	id_label bigint NOT NULL DEFAULT '0',
-	id_pm bigint NOT NULL DEFAULT '0',
+	id_label bigint NOT NULL,
+	id_pm bigint NOT NULL,
 	PRIMARY KEY (id_label, id_pm)
 );
 
@@ -1346,8 +1346,8 @@ CREATE TABLE {$db_prefix}pm_labeled_messages (
 #
 
 CREATE TABLE {$db_prefix}pm_recipients (
-	id_pm bigint NOT NULL DEFAULT '0',
-	id_member int NOT NULL DEFAULT '0',
+	id_pm bigint NOT NULL,
+	id_member int NOT NULL,
 	bcc smallint NOT NULL DEFAULT '0',
 	is_read smallint NOT NULL DEFAULT '0',
 	is_new smallint NOT NULL DEFAULT '0',
@@ -1421,8 +1421,8 @@ CREATE TABLE {$db_prefix}polls (
 #
 
 CREATE TABLE {$db_prefix}poll_choices (
-	id_poll int NOT NULL DEFAULT '0',
-	id_choice smallint NOT NULL DEFAULT '0',
+	id_poll int NOT NULL,
+	id_choice smallint NOT NULL,
 	label varchar(255) NOT NULL  DEFAULT '',
 	votes smallint NOT NULL DEFAULT '0',
 	PRIMARY KEY (id_poll, id_choice)
@@ -1487,7 +1487,7 @@ CREATE UNIQUE INDEX {$db_prefix}scheduled_tasks_task ON {$db_prefix}scheduled_ta
 #
 
 CREATE TABLE {$db_prefix}settings (
-	variable varchar(255) NOT NULL DEFAULT '',
+	variable varchar(255) NOT NULL,
 	value text NOT NULL,
 	PRIMARY KEY (variable)
 );
@@ -1497,7 +1497,7 @@ CREATE TABLE {$db_prefix}settings (
 #
 
 CREATE UNLOGGED TABLE {$db_prefix}sessions (
-	session_id varchar(128) NOT NULL DEFAULT '',
+	session_id varchar(128) NOT NULL,
 	last_update bigint NOT NULL DEFAULT '0',
 	data text NOT NULL,
 	PRIMARY KEY (session_id)
@@ -1529,8 +1529,8 @@ CREATE TABLE {$db_prefix}smileys (
 
 CREATE TABLE {$db_prefix}smiley_files
 (
-	id_smiley SMALLINT NOT NULL DEFAULT '0',
-	smiley_set VARCHAR(48) NOT NULL DEFAULT '',
+	id_smiley SMALLINT NOT NULL,
+	smiley_set VARCHAR(48) NOT NULL,
 	filename VARCHAR(48) NOT NULL DEFAULT '',
 	PRIMARY KEY (id_smiley, smiley_set)
 );
@@ -1590,9 +1590,9 @@ CREATE INDEX {$db_prefix}subscriptions_active ON {$db_prefix}subscriptions (acti
 #
 
 CREATE TABLE {$db_prefix}themes (
-	id_member int DEFAULT '0',
-	id_theme smallint  DEFAULT '1',
-	variable varchar(255) DEFAULT '',
+	id_member int,
+	id_theme smallint,
+	variable varchar(255),
 	value text NOT NULL,
 	PRIMARY KEY (id_theme, id_member, variable)
 );
@@ -1683,8 +1683,8 @@ CREATE INDEX {$db_prefix}user_alerts_alert_time ON {$db_prefix}user_alerts (aler
 #
 
 CREATE TABLE {$db_prefix}user_alerts_prefs (
-	id_member int NOT NULL DEFAULT '0',
-	alert_pref varchar(32) NOT NULL DEFAULT '',
+	id_member int NOT NULL,
+	alert_pref varchar(32) NOT NULL,
 	alert_value smallint NOT NULL DEFAULT '0',
 	PRIMARY KEY (id_member, alert_pref)
 );
@@ -1728,9 +1728,9 @@ CREATE UNIQUE INDEX {$db_prefix}user_drafts_id_member ON {$db_prefix}user_drafts
 #
 
 CREATE TABLE {$db_prefix}user_likes (
-	id_member int NOT NULL DEFAULT '0',
-	content_type char(6) DEFAULT '',
-	content_id int NOT NULL DEFAULT '0',
+	id_member int NOT NULL,
+	content_type char(6),
+	content_id int NOT NULL,
 	like_time int NOT NULL DEFAULT '0',
 	PRIMARY KEY (content_id, content_type, id_member)
 );
@@ -1746,9 +1746,9 @@ CREATE INDEX {$db_prefix}user_likes_liker ON {$db_prefix}user_likes (id_member);
 # Table structure for `mentions`
 #
 CREATE TABLE {$db_prefix}mentions (
-	content_id int DEFAULT '0',
-	content_type varchar(10) DEFAULT '',
-	id_mentioned int DEFAULT 0,
+	content_id int,
+	content_type varchar(10),
+	id_mentioned int,
 	id_member int NOT NULL DEFAULT 0,
 	time int NOT NULL DEFAULT 0,
 	PRIMARY KEY (content_id, content_type, id_mentioned)
