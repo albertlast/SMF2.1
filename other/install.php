@@ -2544,5 +2544,5 @@ function template_delete_install()
 		<br>
 		', $txt['good_luck'];
 }
-
+ echo 'step end';
 ?>

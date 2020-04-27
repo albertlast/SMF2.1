@@ -23,9 +23,13 @@ echo 'step 3';
 final class InstallTest extends TestCase
 {
     public function testWrite() {
+        echo 'step Write start';
         load_lang_file();
+        echo 'step Write 1';
         $var = CheckFilesWritable();
+        echo 'step Write 2';
         $this->assertEquals(true,$var);
+        echo 'step Write end';
     }
 
     public function testDBSettings() {
