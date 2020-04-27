@@ -38,4 +38,4 @@ before_script:
 
 script:
   - git submodule foreach git pull origin master
-  - vendor/bin/phpunit ./Tests
+  - php vendor/bin/phpunit
