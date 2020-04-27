@@ -19,7 +19,8 @@ echo 'step 1';
 use PHPUnit\Framework\TestCase;
 echo 'step 2';
 require_once('./install.php');
-echo 'step 3';
+echo 'step 3'."\n";
+echo 'pgsql existiert? '.function_exists('pg_pconnect');
 final class InstallTest extends TestCase
 {
     public function testWrite() {
