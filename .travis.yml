@@ -23,7 +23,7 @@ env:
   - PGPORT=5432
 
 install:
-  - composer install
+  - composer install phpunit
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
