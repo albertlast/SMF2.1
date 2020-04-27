@@ -33,6 +33,7 @@ final class InstallTest extends TestCase
     }
 
     public function testDBSettings() {
+        echo 'step dbs start';
         $_POST['db_type'] = 'postgresql';
         $_POST['db_prefix'] = 'smf_';
         $_POST['db_name'] = 'travis_ci_test';
@@ -50,6 +51,7 @@ final class InstallTest extends TestCase
     }
 
     public function testForumSettings() {
+        echo 'step fms start';
         $_SERVER['SERVER_NAME'] = 'localhost';
         $_POST['boardurl'] = 'http://localhost';
         $_POST['mbname'] = 'My PHPUnit Community';
@@ -59,12 +61,14 @@ final class InstallTest extends TestCase
     }
 
     public function testDatabasePopulation() {
+        echo 'step dbpop start';
         load_lang_file();
         $var = DatabasePopulation();
         $this->assertEquals(true,$var);
     }
 
     public function testAdminAccount() {
+        echo 'step adm start';
         $_POST['username'] = 'Admin';
         $_POST['email'] = 'phpunit@localhost.com';
         $_POST['password1'] = 'admin';    
