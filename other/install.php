@@ -432,7 +432,7 @@ function installExit($fallThrough = false)
 	}
 
 	// Bang - gone!
-	if (defined('SMFPHPUNIT')) die();
+	if (!defined('SMFPHPUNIT')) die();
 }
 
 function Welcome()
