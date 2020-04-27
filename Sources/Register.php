@@ -860,7 +860,7 @@ function VerificationCode()
 	}
 
 	// We all die one day...
-	die();
+	die('die somewhere');
 }
 
 /**

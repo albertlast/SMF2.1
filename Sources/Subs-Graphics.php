@@ -1127,7 +1127,7 @@ function showCodeImage($code)
 
 	// Bail out.
 	imagedestroy($code_image);
-	die();
+	die('die somewhere');
 }
 
 /**
@@ -1167,7 +1167,7 @@ function showLetterImage($letter)
 	include($settings['default_theme_dir'] . '/fonts/' . $random_font . '/' . strtoupper($letter) . '.png');
 
 	// Nothing more to come.
-	die();
+	die('die somewhere');
 }
 
 ?>

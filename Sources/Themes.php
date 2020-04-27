@@ -1596,7 +1596,7 @@ function EditTheme()
 
 	// @todo Should this be removed?
 	if (isset($_REQUEST['preview']))
-		die('die() with fire');
+		die('die('die somewhere') with fire');
 
 	isAllowedTo('admin_forum');
 	loadTemplate('Themes');
