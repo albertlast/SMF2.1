@@ -205,7 +205,7 @@ function initialize_inputs()
 		<strong>', htmlspecialchars($_GET['pass_string']), '</strong>
 	</body>
 </html>';
-		if(!defined('SMFPHPUNIT')) exit;
+		exit;
 	}
 
 	// This is really quite simple; if ?delete is on the URL, delete the installer...
@@ -248,7 +248,7 @@ function initialize_inputs()
 			$secure = true;
 
 		header('location: http' . ($secure ? 's' : '') . '://' . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT']) . dirname($_SERVER['PHP_SELF']) . '/Themes/default/images/blank.png');
-		if(!defined('SMFPHPUNIT')) exit;
+		exit;
 	}
 
 	// PHP 5 might cry if we don't do this now.
