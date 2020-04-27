@@ -84,6 +84,3 @@ final class InstallTest extends TestCase
     }
 }
 
-$blub = new InstallTest();
-$blub->testWrite();
-?>
