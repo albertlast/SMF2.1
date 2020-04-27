@@ -33,7 +33,7 @@ final class InstallTest extends TestCase
         $_POST['db_user'] = 'postgres';
         $_POST['db_passwd'] = '';
         $_POST['db_server'] = 'localhost';
-        $_POST['db_port'] = '5432';
+        $_POST['db_port'] = '5433';
 
         // updateSettingsFile got different way to detect setting dir...
         $GLOBALS['boarddir'] = getcwd();
