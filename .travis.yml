@@ -15,7 +15,7 @@ env:
   global:
   - PGPORT=5432
 
-before_install: sudo apt-get install php-pgsql
+
 
 install:
   - composer require phpunit/phpunit
