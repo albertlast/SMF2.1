@@ -18,6 +18,14 @@ services:
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
+  - mv ./other/install.php .
+  - mv ./other/install_2-1_mysql.sql .
+  - mv ./other/install_2-1_postgresql.sql .
+  - mv ./other/Settings.php .
+  - cp ./Settings.php ./Settings_bak.php
+  - mv ./other/readme.html .
+  - mv ./other/db_last_error.php .
+
 
 script:
   - git submodule foreach git pull origin master
