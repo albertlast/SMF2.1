@@ -154,7 +154,7 @@ foreach ($incontext['steps'] as $num => $step)
 }
 
 // Actually do the template stuff.
-installExit(defined('SMFPHPUNIT'));
+if(!defined('SMFPHPUNIT')) installExit();
 
 function initialize_inputs()
 {
