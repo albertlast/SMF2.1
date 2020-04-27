@@ -414,7 +414,7 @@ function display_maintenance_message()
 	</body>
 </html>';
 
-	die();
+	die('die somewhere');
 }
 
 /**
@@ -462,7 +462,7 @@ function display_db_error()
 	</body>
 </html>';
 
-	die();
+	die('die somewhere');
 }
 
 /**
@@ -489,7 +489,7 @@ function display_loadavg_error()
 	</body>
 </html>';
 
-	die();
+	die('die somewhere');
 }
 
 /**

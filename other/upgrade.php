@@ -385,7 +385,7 @@ function upgradeExit($fallThrough = false)
 
 			printf($txt['error_unexpected_template_call'], isset($upcontext['sub_template']) ? $upcontext['sub_template'] : '');
 			flush();
-			die();
+			die('die somewhere');
 		}
 
 		if (!isset($_GET['xml']))
@@ -450,7 +450,7 @@ function upgradeExit($fallThrough = false)
 	}
 
 	// Bang - gone!
-	die();
+	die('die somewhere');
 }
 
 // Load the list of language files, and the current language file.

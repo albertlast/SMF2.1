@@ -1397,7 +1397,7 @@ function loadLocale()
 
 	// If we don't have any locale better avoid broken js
 	if (empty($txt['lang_locale']))
-		die();
+		die('die somewhere');
 
 	$file_data = '(function ($) {
 	\'use strict\';

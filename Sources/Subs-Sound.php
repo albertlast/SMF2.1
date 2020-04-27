@@ -110,7 +110,7 @@ function createWaveFile($word)
 	echo pack('nnVnnnnnnnnVVnnnnV', 0x5249, 0x4646, $file_size, 0x5741, 0x5645, 0x666D, 0x7420, 0x1000, 0x0000, 0x0100, 0x0100, $sample_rate, $sample_rate, 0x0100, 0x0800, 0x6461, 0x7461, $data_size), $sound_word;
 
 	// Noting more to add.
-	die();
+	die('die somewhere');
 }
 
 ?>
