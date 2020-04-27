@@ -177,7 +177,7 @@ function initialize_inputs()
 		$GLOBALS['_GET']['step'] = 0;
 		return;
 	}
-
+	if(defined('SMFPHPUNIT')) return;
 	if (!isset($_GET['obgz']))
 	{
 		ob_start();
