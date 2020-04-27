@@ -22,6 +22,9 @@ env:
   global:
   - PGPORT=5432
 
+install:
+  - composer install
+
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp ./other/install.php .
