@@ -24,6 +24,7 @@ final class InstallTest extends TestCase
 {
     public function testWrite() {
         echo 'step Write start';
+        die('testtt');
         load_lang_file();
         echo 'step Write 1';
         $var = CheckFilesWritable();
@@ -36,9 +37,10 @@ final class InstallTest extends TestCase
         echo 'step dbs start';
         $_POST['db_type'] = 'postgresql';
         $_POST['db_prefix'] = 'smf_';
-        $_POST['db_name'] = 'travis_ci_test';
+        //$_POST['db_name'] = 'travis_ci_test';
+        $_POST['db_name'] = 'postgres';
         $_POST['db_user'] = 'postgres';
-        $_POST['db_passwd'] = '';
+        $_POST['db_passwd'] = 'asdf';
         $_POST['db_server'] = 'localhost';
         $_POST['db_port'] = '5432';
 
