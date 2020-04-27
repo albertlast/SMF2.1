@@ -763,15 +763,15 @@ function SMStats()
 
 	// First, is it disabled?
 	if (empty($modSettings['enable_sm_stats']) || empty($modSettings['sm_stats_key']))
-		die('die somewhere');
+		die();
 
 	// Are we saying who we are, and are we right? (OR an admin)
 	if (!$user_info['is_admin'] && (!isset($_GET['sid']) || $_GET['sid'] != $modSettings['sm_stats_key']))
-		die('die somewhere');
+		die();
 
 	// Verify the referer...
 	if (!$user_info['is_admin'] && (!isset($_SERVER['HTTP_REFERER']) || md5($_SERVER['HTTP_REFERER']) != '746cb59a1a0d5cf4bd240e5a67c73085'))
-		die('die somewhere');
+		die();
 
 	// Get some server versions.
 	require_once($sourcedir . '/Subs-Admin.php');

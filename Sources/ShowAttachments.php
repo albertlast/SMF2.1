@@ -363,7 +363,7 @@ function showAttachment()
 	elseif (@readfile($file['filePath']) === null)
 		echo file_get_contents($file['filePath']);
 
-	die('die somewhere');
+	die();
 }
 
 ?>
