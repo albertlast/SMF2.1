@@ -38,3 +38,4 @@ before_script:
 
 script:
   - php vendor/bin/phpunit
+  - psql travis_ci_test -c 'select count(*) from smf_members;' -U postgres
