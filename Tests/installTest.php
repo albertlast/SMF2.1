@@ -13,7 +13,9 @@
  *
  * @version 2.1 RC2
  */
-
+function die($blub){
+    echo $blub;
+}
 define('SMFPHPUNIT',TRUE);
 use PHPUnit\Framework\TestCase;
 require_once('./install.php');
