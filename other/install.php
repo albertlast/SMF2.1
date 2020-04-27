@@ -104,10 +104,11 @@ $databases = array(
 
 global $txt;
 
+echo 'step4';
 // Initialize everything and load the language files.
 initialize_inputs();
 load_lang_file();
-
+echo 'step5';
 // This is what we are.
 $installurl = $_SERVER['PHP_SELF'];
 
@@ -125,7 +126,7 @@ $incontext['steps'] = array(
 
 // Default title...
 $incontext['page_title'] = $txt['smf_installer'];
-
+echo 'step6';
 // What step are we on?
 $incontext['current_step'] = isset($_GET['step']) ? (int) $_GET['step'] : 0;
 
@@ -152,7 +153,7 @@ foreach ($incontext['steps'] as $num => $step)
 	}
 	$incontext['overall_percent'] += $step[3];
 }
-
+echo 'step7';
 // Actually do the template stuff.
 if(!defined('SMFPHPUNIT')) installExit();
 
