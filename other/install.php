@@ -102,7 +102,7 @@ $databases = array(
 	),
 );
 
-global $txt,$databases;
+global $txt;
 
 echo 'step4';
 // Initialize everything and load the language files.
@@ -739,8 +739,6 @@ function DatabaseSettings()
 	$incontext['supported_databases'] = array();
 
 	$foundOne = false;
-	echo '$database:';
-	var_dump($databases);
 	foreach ($databases as $key => $db)
 	{
 		// Override with the defaults for this DB if appropriate.
