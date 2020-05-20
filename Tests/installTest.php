@@ -21,6 +21,8 @@ echo 'step 2';
 require_once('./install.php');
 echo 'step 3'."\n";
 echo 'pgsql existiert? '.extension_loaded('pgsql');
+$blub = new InstallTest();
+$blub->testWrite();
 final class InstallTest extends TestCase
 {
     public function testWrite() {
