@@ -13,17 +13,14 @@
  *
  * @version 2.1 RC2
  */
-echo 'step 0';
 define('SMFPHPUNIT',TRUE);
-echo 'step 1';
 use PHPUnit\Framework\TestCase;
-echo 'step 2';
-require_once('./install.php');
-echo 'step 3'."\n";
-echo 'pgsql existiert? '.extension_loaded('pgsql');
 
 final class InstallTest extends TestCase
 {
+    public function __construct(){
+        require_once('./install.php');
+    }
     public function testWrite() {
         echo 'step Write start';
         load_lang_file();
