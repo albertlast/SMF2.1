@@ -102,7 +102,7 @@ $databases = array(
 	),
 );
 
-global $txt;
+global $txt,$databases;
 
 echo 'step4';
 // Initialize everything and load the language files.
