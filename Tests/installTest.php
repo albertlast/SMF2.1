@@ -86,3 +86,7 @@ final class InstallTest extends TestCase
 }
 $blub = new InstallTest();
 $blub->testWrite();
+$blub->testDBSettings();
+$blub->testForumSettings();
+$blub->testDatabasePopulation();
+$blub->testAdminAccount();
