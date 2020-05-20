@@ -19,7 +19,9 @@ use PHPUnit\Framework\TestCase;
 final class InstallTest extends TestCase
 {
     public function __construct(){
+        global $databases;
         require_once('./install.php');
+        
     }
     public function testWrite() {
         echo 'step Write start';
