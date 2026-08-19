@@ -162,13 +162,6 @@ class Url implements \Stringable
 	 */
 	protected $is_ascii;
 
-	/**
-	 * @var array
-	 *
-	 * Cache for $this->getIPs()
-	 */
-	protected array $ips;
-
 	/****************************
 	 * Internal static properties
 	 ****************************/
@@ -440,10 +433,6 @@ class Url implements \Stringable
 
 		$parsed = parse_url($url);
 
-		// The host may be about to change, so the addresses we resolved for the
-		// old one no longer describe this URL.
-		unset($this->ips);
-
 		foreach (['scheme', 'host', 'port', 'user', 'pass', 'path', 'query', 'fragment'] as $prop) {
 			// Clear out any old value.
 			unset($this->{$prop});
@@ -548,55 +537,52 @@ class Url implements \Stringable
 	 */
 	public function getIPs(): array
 	{
-		if (isset($this->ips)) {
-			return $this->ips;
-		}
-
 		$is_ascii = $this->is_ascii;
 
 		$this->toAscii();
 
-		// Someone else already asked about this host during this request.
-		if (isset(self::$resolved_hosts[$this->host])) {
-			$this->ips = self::$resolved_hosts[$this->host];
+		// Hold onto the name we are about to look up. Everything below has to
+		// use this rather than $this->host, because putting the URL back into
+		// UTF-8 at the end re-parses it, and the host is spelled differently on
+		// the other side of that.
+		$host = $this->host;
 
-			if (!$is_ascii) {
-				$this->toUtf8();
-			}
+		// Nobody has asked about this host yet during this request.
+		if (!isset(self::$resolved_hosts[$host])) {
+			// Resolve the host to its address(es). A literal IP resolves to itself.
+			$ips = [];
 
-			return $this->ips;
-		}
+			if (filter_var(trim($host, '[]'), FILTER_VALIDATE_IP)) {
+				$ips[] = new IP(trim($host, '[]'));
+			} else {
+				$records = @dns_get_record($host, DNS_A | DNS_AAAA);
 
-		// Resolve the host to its address(es). A literal IP resolves to itself.
-		$this->ips = [];
+				foreach ((array) $records as $record) {
+					if (!empty($record['ip'])) {
+						$ips[] = new IP($record['ip']);
+					}
 
-		if (filter_var(trim($this->host, '[]'), FILTER_VALIDATE_IP)) {
-			$this->ips[] = new IP(trim($this->host, '[]'));
-		} else {
-			$records = @dns_get_record($this->host, DNS_A | DNS_AAAA);
-
-			foreach ((array) $records as $record) {
-				if (!empty($record['ip'])) {
-					$this->ips[] = new IP($record['ip']);
-				}
-
-				if (!empty($record['ipv6'])) {
-					$this->ips[] = new IP($record['ipv6']);
+					if (!empty($record['ipv6'])) {
+						$ips[] = new IP($record['ipv6']);
+					}
 				}
 			}
+
+			// Remember it. Besides saving lookups, this is what makes the
+			// post-connection checks in the WebFetch APIs meaningful: they
+			// compare against what the host resolved to *before* we connected,
+			// so a DNS rebinding attack can't answer differently the second
+			// time around.
+			self::$resolved_hosts[$host] = $ips;
 		}
 
-		// Remember it. Besides saving lookups, this is what makes the
-		// post-connection checks in the WebFetch APIs meaningful: they compare
-		// against what the host resolved to *before* we connected, so a DNS
-		// rebinding attack can't answer differently the second time around.
-		self::$resolved_hosts[$this->host] = $this->ips;
+		$ips = self::$resolved_hosts[$host];
 
 		if (!$is_ascii) {
 			$this->toUtf8();
 		}
 
-		return $this->ips;
+		return $ips;
 	}
 
 	/**
