@@ -125,7 +125,6 @@ img#smflogo {
 	text-align: left;
 }
 
-
 .mark_read {
 	float: left;
 }
@@ -137,7 +136,6 @@ img#smflogo {
 }
 #poll_options dl.options dt {
 	float: right;
-	clear: right;
 }
 #poll_options dl.options dd {
 	float: right;
@@ -152,9 +150,6 @@ img#smflogo {
 	margin: 0 175px 0 0;
 }
 .keyinfo h5::after {
-	clear: left;
-}
-.moderatorbar {
 	clear: left;
 }
 /* poster details and list of items */
@@ -288,11 +283,6 @@ ul.quickbuttons li {
 }
 .login h3 img {
 	margin: 0 0 0.5em;
-}
-
-/* Additional profile fields */
-dl.register_form {
-	clear: left;
 }
 
 dl.register_form dt {
