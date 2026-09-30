@@ -22,11 +22,9 @@ if (!defined('SMF')) {
  * Template for linking an existing topic to an event.
  */
 ?><?php /* If user cannot edit existing events, we don't need to bother showing these options at all. */ ?><?php if (!User::$me->allowedTo('calendar_edit_any') && !User::$me->allowedTo('calendar_edit_own')): ?><?php return; ?><?php endif; ?><?php /* If user can both create and edit events, show both options. */ ?><?php if (User::$me->allowedTo('calendar_post')): ?>
-
 					<dl id="event_link_to">
 						<dt class="clear">
 							<?= Lang::getTxt('calendar_link_to', file: 'Calendar') ?>
-
 						</dt>
 						<dd>
 							<label>
@@ -39,11 +37,9 @@ if (!defined('SMF')) {
 							</label>
 						</dd>
 					</dl><?php endif; ?><?php /* Let the user specify an existing event to link to. */ ?>
-
 					<dl id="event_id_to_link">
 						<dt class="clear">
 							<?= Lang::getTxt('calendar_link_event_id', file: 'Calendar') ?>
-
 						</dt>
 						<dd>
 							<input type="text" name="event_id_to_link">

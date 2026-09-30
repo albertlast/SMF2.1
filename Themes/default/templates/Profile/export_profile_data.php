@@ -33,7 +33,6 @@ $dltoken = '';
 		<div class="cat_bar">
 			<h3 class="catbg profile_hd">
 				<?= Lang::getTxt('export_profile_data', file: 'Profile') ?>
-
 			</h3>
 		</div>
 		<div class="information"><?= Utils::$context['export_profile_data_desc'] ?></div>

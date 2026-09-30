@@ -111,7 +111,6 @@ if (!defined('SMF')) {
 							<dt class="clear" id="dt_monthly_option_type_bymonthday">
 								<label>
 									<?= Lang::getTxt('calendar_repeat_bymonthday_label', file: 'Calendar') ?>
-
 									<input type="radio" name="monthly_option_type" id="monthly_option_type_bymonthday"<?= !empty(Utils::$context['event']->recurrence_iterator->getRRule()->bymonthday) ? ' checked' : '' ?>>
 								</label>
 							</dt>
@@ -136,7 +135,6 @@ if (!defined('SMF')) {
 							<dt class="clear">
 								<label>
 									<?= Lang::getTxt('calendar_repeat_byday_label', file: 'Calendar') ?>
-
 									<input type="radio" name="monthly_option_type" id="monthly_option_type_byday"<?= !empty(Utils::$context['event']->recurrence_iterator->getRRule()->byday) ? ' checked' : '' ?>>
 								</label>
 							</dt>

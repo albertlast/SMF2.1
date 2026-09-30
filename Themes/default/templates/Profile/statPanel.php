@@ -42,7 +42,6 @@ if (!defined('SMF')) {
 			<div class="title_bar">
 				<h3 class="titlebg">
 					<span class="main_icons history"></span> <?= Lang::getTxt('statPanel_activityTime', file: 'Profile') ?>
-
 				</h3>
 			</div>
 <?php /* If they haven't post at all, don't draw the graph. */ ?>
@@ -71,7 +70,6 @@ if (!defined('SMF')) {
 				<div class="title_bar">
 					<h3 class="titlebg">
 						<span class="main_icons replies"></span> <?= Lang::getTxt('statPanel_topBoards', file: 'Profile') ?>
-
 					</h3>
 				</div>
 <?php if (empty(Utils::$context['popular_boards'])): ?>
@@ -84,10 +82,8 @@ if (!defined('SMF')) {
 					<dd>
 						<div class="profile_pie" style="background-position: -<?= ((int) ($board['posts_percent'] / 5) * 20) ?>px 0;" title="<?= Lang::getTxt('statPanel_topBoards_memberposts', [$board['posts'], $board['total_posts_member'], $board['posts_percent'] / 100], file: 'Profile') ?>">
 							<?= Lang::getTxt('statPanel_topBoards_memberposts', [$board['posts'], $board['total_posts_member'], $board['posts_percent'] / 100], file: 'Profile') ?>
-
 						</div>
 						<?= empty(Utils::$context['hide_num_posts']) ? $board['posts'] : '' ?>
-
 					</dd>
 <?php endforeach; ?>
 				</dl>
@@ -97,7 +93,6 @@ if (!defined('SMF')) {
 				<div class="title_bar">
 					<h3 class="titlebg">
 						<span class="main_icons replies"></span> <?= Lang::getTxt('statPanel_topBoardsActivity', file: 'Profile') ?>
-
 					</h3>
 				</div>
 <?php if (empty(Utils::$context['board_activity'])): ?>
@@ -110,10 +105,8 @@ if (!defined('SMF')) {
 					<dd>
 						<div class="profile_pie" style="background-position: -<?= ((int) ($activity['posts_percent'] / 5) * 20) ?>px 0;" title="<?= Lang::getTxt('statPanel_topBoards_posts', [$activity['posts'], $activity['total_posts'], $activity['posts_percent'] / 100], file: 'Profile') ?>">
 							<?= Lang::getTxt('statPanel_topBoards_posts', [$activity['posts'], $activity['total_posts'], $activity['posts_percent'] / 100], file: 'Profile') ?>
-
 						</div>
 						<?= Lang::formatText('{0, number, percent}', [$activity['percent'] / 100]) ?>
-
 					</dd>
 <?php endforeach; ?>
 				</dl>

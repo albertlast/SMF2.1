@@ -22,16 +22,13 @@ if (!defined('SMF')) {
  * Results page for an admin search.
  */
 ?>
-
 						<div id="section_header" class="cat_bar">
 							<h3 class="catbg">
 								<span id="quick_search_results">
 									<?= Lang::getTxt('admin_search_results_desc', Utils::$context, file: 'Admin') ?>
-
 								</span>
 							</h3>
 							<?php $this->subTemplate('admin_quick_search'); ?>
-
 						</div><!-- #section_header -->
 						<div class="windowbg generic_list_wrapper">
 <?php if (empty(Utils::$context['search_results'])): ?>
@@ -49,7 +46,6 @@ if (!defined('SMF')) {
 									</p>
 									<p class="double_height">
 										<?= $result['snippet'] ?>
-
 									</p>
 								</li>
 <?php /* Otherwise it's... not! */ ?>

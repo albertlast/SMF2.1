@@ -32,7 +32,6 @@ if (!defined('SMF')) {
 <?php if (isset($_GET['msg'])): ?>
 <?php if (Lang::txtExists('custom_option_' . $_GET['msg'], file: 'Errors')): ?>
 					<div class="errorbox"><?= Lang::getTxt('custom_option_' . $_GET['msg'], file: 'Errors') ?>
-
 					</div>
 <?php endif; ?>
 <?php endif; ?>

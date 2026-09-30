@@ -22,11 +22,9 @@ if (!defined('SMF')) {
  * Template used when editing a single occurrence of an event.
  */
 ?><?php if (Utils::$context['event']->selected_occurrence->can_affect_future): ?>
-
 						<dl id="occurrence_options">
 							<dt class="clear">
 								<?= Lang::getTxt('calendar_repeat_adjustment_label', file: 'Calendar') ?>
-
 							</dt>
 							<dd>
 								<label>

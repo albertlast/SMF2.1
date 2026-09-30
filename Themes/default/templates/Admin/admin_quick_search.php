@@ -24,7 +24,6 @@ if (!defined('SMF')) {
  * This shows the admin search form
  */
 ?><?php if (User::$me->is_admin): ?>
-
 								<form action="<?= Config::$scripturl ?>?action=admin;area=search" method="post" accept-charset="UTF-8" class="admin_search">
 									<span class="main_icons filter centericon"></span>
 									<input type="search" name="search_term" placeholder="<?= Lang::getTxt('admin_search', file: 'Admin') ?>"<?= isset(Utils::$context['search_term']) ? ' value="' . Utils::$context['search_term'] . '"' : '' ?>>

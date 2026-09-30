@@ -32,7 +32,6 @@ if (!defined('SMF')) {
 								<div class="cat_bar">
 									<h3 class="catbg">
 										<a href="<?= Config::$scripturl ?>?action=helpadmin;help=live_news" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="<?= Lang::getTxt('help', file: 'General') ?>"></span></a> <?= Lang::getTxt('live', file: 'Admin') ?>
-
 									</h3>
 								</div>
 								<div class="windowbg nopadding">

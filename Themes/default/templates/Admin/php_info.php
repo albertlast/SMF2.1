@@ -22,12 +22,10 @@ if (!defined('SMF')) {
  * Retrieves info from the php_info function, scrubs and preps it for display
  */
 ?>
-
 					<div id="admin_form_wrapper">
 						<div id="section_header" class="cat_bar">
 							<h3 class="catbg">
 								<?= Lang::getTxt('phpinfo_settings', file: 'Admin') ?>
-
 							</h3>
 						</div>
 <?php /* for each php info area */ ?>

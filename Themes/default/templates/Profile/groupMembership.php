@@ -29,7 +29,6 @@ if (!defined('SMF')) {
 			<div class="cat_bar">
 				<h3 class="catbg profile_hd">
 					<?= Lang::getTxt('profile', file: 'General') ?>
-
 				</h3>
 			</div>
 			<p class="information"><?= Lang::getTxt('groupMembership_info', file: 'Profile') ?></p>
@@ -37,7 +36,6 @@ if (!defined('SMF')) {
 <?php if (!empty(Utils::$context['update_message'])): ?>
 			<div class="infobox">
 				<?= Utils::$context['update_message'] ?>
-
 			</div>
 <?php endif; ?>
 			<div id="groups">

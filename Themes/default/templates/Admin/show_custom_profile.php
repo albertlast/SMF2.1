@@ -22,9 +22,7 @@ if (!defined('SMF')) {
  * Template for showing custom profile fields.
  */
 ?><?php if (!empty(Utils::$context['saved_successful'])): ?>
-
 					<div class="infobox"><?= Lang::getTxt('settings_saved', file: 'Admin') ?></div><?php endif; ?><?php /* Standard fields. */ ?><?php $this->subTemplate('show_list', ['list_id' => 'standard_profile_fields']); ?>
-
 					<script>
 						var iNumChecks = document.forms.standardProfileFields.length;
 						for (var i = 0; i < iNumChecks; i++)

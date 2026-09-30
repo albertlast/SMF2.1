@@ -23,7 +23,6 @@ if (!defined('SMF')) {
  * Template for picking a theme
  */
 ?>
-
 							<dt>
 								<strong><?= Lang::getTxt('current_theme', file: 'Profile') ?></strong>
 							</dt>

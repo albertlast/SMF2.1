@@ -23,7 +23,6 @@ if (!defined('SMF')) {
  * Template for setting up and managing Two-Factor Authentication.
  */
 ?>
-
 			<div class="cat_bar">
 				<h3 class="catbg"><?= Lang::getTxt('tfa_title', file: 'Profile') ?></h3>
 			</div>
@@ -32,7 +31,6 @@ if (!defined('SMF')) {
 <?php if (!empty(Utils::$context['tfa_backup'])): ?>
 					<div class="smalltext error">
 						<?= Lang::getTxt('tfa_backup_used_desc', file: 'Profile') ?>
-
 					</div>
 <?php elseif (Config::$modSettings['tfa_mode'] == 2): ?>
 					<div class="smalltext">
@@ -41,7 +39,6 @@ if (!defined('SMF')) {
 <?php endif; ?>
 					<div class="smalltext">
 						<?= Lang::getTxt('tfa_desc', file: 'Profile') ?>
-
 					</div>
 					<div class="floatleft">
 						<form action="<?= Config::$scripturl ?>?action=profile;area=tfasetup" method="post">
@@ -50,7 +47,6 @@ if (!defined('SMF')) {
 <?php if (!empty(Utils::$context['tfa_pass_error'])): ?>
 								<div class="error smalltext">
 									<?= Lang::getTxt('tfa_pass_invalid', file: 'Profile') ?>
-
 								</div>
 <?php endif; ?>
 								<input type="password" name="oldpasswrd" size="25"<?= !empty(Utils::$context['password_auth_failed']) ? ' class="error"' : '' ?><?= !empty(Utils::$context['tfa_pass_value']) ? ' value="' . Utils::$context['tfa_pass_value'] . '"' : '' ?>>
@@ -65,7 +61,6 @@ if (!defined('SMF')) {
 <?php if (!empty(Utils::$context['tfa_error'])): ?>
 								<div class="error smalltext">
 									<?= Lang::getTxt('tfa_code_invalid', file: 'Profile') ?>
-
 								</div>
 <?php endif; ?>
 								<input type="text" name="tfa_code" size="25"<?= !empty(Utils::$context['tfa_error']) ? ' class="error"' : '' ?><?= !empty(Utils::$context['tfa_value']) ? ' value="' . Utils::$context['tfa_value'] . '"' : '' ?>>

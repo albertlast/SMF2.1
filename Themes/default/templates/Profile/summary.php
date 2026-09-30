@@ -44,7 +44,6 @@ $fields .= '
 <?php if (!empty($fields)): ?>
 			<div class="custom_fields_above_name">
 				<ul><?= $fields ?>
-
 				</ul>
 			</div>
 <?php endif; ?>
@@ -86,7 +85,6 @@ $fields .= '
 <?php if (!empty($fields)): ?>
 			<div class="custom_fields_below_avatar">
 				<ul><?= $fields ?>
-
 				</ul>
 			</div>
 <?php endif; ?>
@@ -139,7 +137,6 @@ $fields .= '
 <?php if (!empty($fields)): ?>
 			<div class="custom_fields_bottom">
 				<ul class="nolist"><?= $fields ?>
-
 				</ul>
 			</div>
 <?php endif; ?>
@@ -227,7 +224,6 @@ $fields .= '
 <?php if (!empty($fields)): ?>
 			<div class="custom_fields_above_signature">
 				<ul class="nolist"><?= $fields ?>
-
 				</ul>
 			</div>
 <?php endif; ?>
@@ -237,7 +233,6 @@ $fields .= '
 			<div class="signature">
 				<h5><?= Lang::getTxt('signature', file: 'Profile') ?></h5>
 				<?= Utils::$context['member']['signature'] ?>
-
 			</div>
 <?php endif; ?>
 <?php /* Are there any custom profile fields for below the signature? */ ?>
@@ -254,7 +249,6 @@ $fields .= '
 <?php if (!empty($fields)): ?>
 			<div class="custom_fields_below_signature">
 				<ul class="nolist"><?= $fields ?>
-
 				</ul>
 			</div>
 <?php endif; ?>
@@ -293,7 +287,6 @@ if (
 					<dt></dt>
 					<dd>
 						<?= Lang::getTxt('deleteAccount_anonymize_forced', file: 'Profile') ?>
-
 					</dd>
 <?php elseif (Utils::$context['activate_type'] % User::BANNED == User::REQUESTED_DELETE): ?>
 					<dt>

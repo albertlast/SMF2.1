@@ -30,7 +30,6 @@ if (!defined('SMF')) {
 			<div class="cat_bar">
 				<h3 class="catbg profile_hd">
 					<?= Lang::getTxt('deleteAccount', file: 'Profile') ?>
-
 				</h3>
 			</div>
 <?php /* If deleting another account give them a lovely info box. */ ?>
@@ -52,7 +51,6 @@ if (!defined('SMF')) {
 <?php else: ?>
 					<label for="anonymize">
 						<input type="checkbox" name="anonymize" id="anonymize" value="1"> <?= Lang::getTxt('deleteAccount_anonymize', file: 'Profile') ?>
-
 					</label>
 <?php endif; ?>
 				</fieldset>
@@ -76,13 +74,11 @@ if (!defined('SMF')) {
 				<fieldset>
 					<label for="deleteVotes">
 						<input type="checkbox" name="deleteVotes" id="deleteVotes" value="1"> <?= Lang::getTxt('deleteAccount_votes', file: 'Profile') ?>
-
 					</label>
 				</fieldset>
 				<fieldset>
 					<label for="deletePosts">
 						<input type="checkbox" name="deletePosts" id="deletePosts" value="1"> <?= Lang::getTxt('deleteAccount_posts', file: 'Profile') ?>
-
 					</label>
 					<select name="remove_type">
 						<option value="posts"><?= Lang::getTxt('deleteAccount_all_posts', file: 'Profile') ?></option>
@@ -97,7 +93,6 @@ if (!defined('SMF')) {
 				<fieldset>
 					<label for="deleteAccount">
 						<input type="checkbox" name="deleteAccount" id="deleteAccount" value="1" onclick="if (this.checked) return confirm('<?= Lang::getTxt('deleteAccount_confirm', file: 'Profile') ?>');"> <?= Lang::getTxt('deleteAccount_member', file: 'Profile') ?>
-
 					</label>
 					<br>
 <?php if (!empty(Config::$modSettings['always_anonymize_deleted_accounts'])): ?>
@@ -106,7 +101,6 @@ if (!defined('SMF')) {
 <?php else: ?>
 					<label for="anonymize">
 						<input type="checkbox" name="anonymize" id="anonymize" value="1"> <?= Lang::getTxt('deleteAccount_anonymize', file: 'Profile') ?>
-
 					</label>
 <?php endif; ?>
 				</fieldset>

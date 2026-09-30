@@ -22,7 +22,6 @@ if (!defined('SMF')) {
  * Show the signature editing box?
  */
 ?>
-
 							<dt id="current_signature" style="display:none">
 								<strong><?= Lang::getTxt('current_signature', file: 'Profile') ?></strong>
 							</dt>

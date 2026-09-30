@@ -23,7 +23,6 @@ if (!defined('SMF')) {
  * Select the time format!
  */
 ?>
-
 							<dt>
 								<strong><label for="easyformat"><?= Lang::getTxt('time_format', file: 'Profile') ?></label></strong><br>
 								<a href="<?= Config::$scripturl ?>?action=helpadmin;help=time_format" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="<?= Lang::getTxt('help', file: 'General') ?>"></span></a>

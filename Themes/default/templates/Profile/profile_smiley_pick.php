@@ -22,7 +22,6 @@ if (!defined('SMF')) {
  * Smiley set picker.
  */
 ?>
-
 							<dt>
 								<strong><label for="smiley_set"><?= Lang::getTxt('smileys_current', file: 'General') ?></label></strong>
 							</dt>

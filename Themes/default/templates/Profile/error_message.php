@@ -24,7 +24,6 @@ if (!defined('SMF')) {
  * Small template for showing an error message upon a save problem in the profile.
  */
 ?>
-
 		<div class="errorbox" <?= empty(Utils::$context['post_errors']) ? 'style="display:none" ' : '' ?>id="profile_error">
 <?php if (!empty(Utils::$context['post_errors'])): ?>
 			<span><?= !empty(Utils::$context['custom_error_title']) ? Utils::$context['custom_error_title'] : Lang::getTxt('profile_errors_occurred', file: 'Errors') ?></span>

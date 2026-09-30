@@ -28,5 +28,4 @@ $w = !empty(Config::$modSettings['avatar_max_width_' . $type]) ? Lang::numberFor
 $h = !empty(Config::$modSettings['avatar_max_height_' . $type]) ? Lang::numberFormat(Config::$modSettings['avatar_max_height_' . $type]) : 0;
 $suffix = (!empty($w) ? 'w' : '') . (!empty($h) ? 'h' : '');
 ?><?php if (empty($suffix)): ?><?php return; ?><?php endif; ?>
-
 								<div class="smalltext"><?= Lang::getTxt('avatar_max_size_' . $suffix, ['w' => $w, 'h' => $h], file: 'Profile') ?></div>

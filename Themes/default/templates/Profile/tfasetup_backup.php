@@ -22,7 +22,6 @@ if (!defined('SMF')) {
  * Template for setting up 2FA backup code
  */
 ?>
-
 			<div class="cat_bar">
 				<h3 class="catbg"><?= Lang::getTxt('tfa_backup_title', file: 'Profile') ?></h3>
 			</div>

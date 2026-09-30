@@ -26,7 +26,6 @@ if (!defined('SMF')) {
  * Used by Calendar.template.php and Post.template.php
  */
 ?>
-
 				<fieldset id="event_options">
 					<legend><?= Lang::getTxt('calendar_event_options', file: 'Calendar') ?></legend>
 					<input type="hidden" name="calendar" value="1">
@@ -40,5 +39,4 @@ if (
 		)
 	):
 ?><?php if (empty(Utils::$context['event']->topic)): ?><?php $this->subTemplate('event_board'); ?><?php elseif (Utils::$context['event']->topic === (Topic::$topic_id ?? NAN)): ?><?php $this->subTemplate('event_unlink'); ?><?php elseif (Utils::$context['event']->new): ?><?php $this->subTemplate('event_link_to'); ?><?php endif; ?><?php endif; ?><?php $this->subTemplate('event_new'); ?>
-
 				</fieldset>

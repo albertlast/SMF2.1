@@ -23,23 +23,18 @@ if (!defined('SMF')) {
  * Form for stopping people using naughty words, etc.
  */
 ?><?php if (!empty(Utils::$context['saved_successful'])): ?>
-
 					<div class="infobox"><?= Lang::getTxt('settings_saved', file: 'Admin') ?></div><?php endif; ?><?php /* First section is for adding/removing words from the censored list. */ ?>
-
 						<form id="admin_form_wrapper" action="<?= Config::$scripturl ?>?action=admin;area=postsettings;sa=censor" method="post" accept-charset="UTF-8">
 							<div id="section_header" class="cat_bar">
 								<h3 class="catbg">
 									<?= Lang::getTxt('admin_censored_words', file: 'Admin') ?>
-
 								</h3>
 							</div>
 							<div class="windowbg">
 								<p><?= Lang::getTxt('admin_censored_where', file: 'Admin') ?></p><?php /* Show text boxes for censoring [bad   ] => [good  ]. */ ?><?php foreach (Utils::$context['censored_words'] as $vulgar => $proper): ?>
-
 								<div class="block">
 									<input type="text" name="censor_vulgar[]" value="<?= $vulgar ?>" size="30"> =&gt; <input type="text" name="censor_proper[]" value="<?= $proper ?>" size="30">
 								</div><?php endforeach; ?><?php /* Now provide a way to censor more words. */ ?>
-
 								<div class="block">
 									<input type="text" name="censor_vulgar[]" size="30"> =&gt; <input type="text" name="censor_proper[]" size="30">
 								</div>
@@ -83,11 +78,9 @@ if (!defined('SMF')) {
 								</dl>
 								<input type="submit" name="save_censor" value="<?= Lang::getTxt('save', file: 'General') ?>" class="button">
 							</div><!-- .windowbg --><?php /* This table lets you test out your filters by typing in rude words and seeing what comes out. */ ?>
-
 							<div class="cat_bar">
 								<h3 class="catbg">
 									<?= Lang::getTxt('censor_test', file: 'Admin') ?>
-
 								</h3>
 							</div>
 							<div class="windowbg">

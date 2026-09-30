@@ -24,7 +24,6 @@ if (!defined('SMF')) {
  * Display a load of drop down selectors for allowing the user to change group.
  */
 ?>
-
 							<dt>
 								<label for="id_group"><strong><?= Lang::getTxt('primary_membergroup', file: 'Profile') ?></strong></label><br>
 								<span class="smalltext"><a href="<?= Config::$scripturl ?>?action=helpadmin;help=moderator_why_missing" onclick="return reqOverlayDiv(this.href);"><span class="main_icons help"></span> <?= Lang::getTxt('moderator_why_missing', file: 'Profile') ?></a></span>
@@ -36,7 +35,6 @@ if (!defined('SMF')) {
 <?php if (!empty($member_group['can_be_primary'])): ?>
 									<option value="<?= $member_group['id'] ?>"<?= $member_group['is_primary'] ? ' selected' : '' ?>>
 										<?= $member_group['name'] ?>
-
 									</option>
 <?php endif; ?>
 <?php endforeach; ?>

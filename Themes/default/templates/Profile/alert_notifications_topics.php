@@ -26,7 +26,6 @@ if (!defined('SMF')) {
 		<div class="cat_bar">
 			<h3 class="catbg">
 				<?= Lang::getTxt('watched_topics', file: 'Profile') ?>
-
 			</h3>
 		</div>
 		<p class="information"><?= Lang::getTxt('watched_topics_desc', file: 'Profile') ?></p>

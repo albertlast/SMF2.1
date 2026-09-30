@@ -21,11 +21,9 @@ if (!defined('SMF')) {
  * Template for showing which boards you're subscribed to
  */
 ?>
-
 		<div class="cat_bar">
 			<h3 class="catbg">
 				<?= Lang::getTxt('watched_boards', file: 'Profile') ?>
-
 			</h3>
 		</div>
 		<p class="information"><?= Lang::getTxt('watched_boards_desc', file: 'Profile') ?></p>

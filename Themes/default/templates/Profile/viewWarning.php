@@ -22,11 +22,9 @@ if (!defined('SMF')) {
  * Template for viewing a user's warnings
  */
 ?><?php $this->subTemplate('load_warning_variables'); ?>
-
 		<div class="cat_bar">
 			<h3 class="catbg profile_hd">
 				<?= Lang::getTxt('profile_viewwarning_for_user', Utils::$context['member'], file: 'Profile') ?>
-
 			</h3>
 		</div>
 		<p class="information"><?= Lang::getTxt('viewWarning_help', file: 'Profile') ?></p>
@@ -37,7 +35,6 @@ if (!defined('SMF')) {
 				</dt>
 				<dd>
 					<?= Utils::$context['member']['name'] ?>
-
 				</dd>
 				<dt>
 					<strong><?= Lang::getTxt('profile_warning_level', file: 'Profile') ?></strong>
@@ -48,14 +45,11 @@ if (!defined('SMF')) {
 						<span><?= Utils::$context['member']['warning'] ?>%</span>
 					</div>
 				</dd><?php /* There's some impact of this? */ ?><?php if (!empty(Utils::$context['level_effects'][Utils::$context['current_level']])): ?>
-
 				<dt>
 					<strong><?= Lang::getTxt('profile_viewwarning_impact', file: 'Profile') ?></strong>
 				</dt>
 				<dd>
 					<?= Utils::$context['level_effects'][Utils::$context['current_level']] ?>
-
 				</dd><?php endif; ?>
-
 			</dl>
 		</div><!-- .windowbg --><?php $this->subTemplate('show_list', ['list_id' => 'view_warnings']); ?>

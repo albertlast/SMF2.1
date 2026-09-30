@@ -23,7 +23,6 @@ if (!defined('SMF')) {
  * Content shown below the clean cache button?
  */
 ?>
-
 					<div class="cat_bar">
 						<h3 class="catbg"><?= Lang::getTxt('maintain_cache', file: 'ManageMaintenance') ?></h3>
 					</div>

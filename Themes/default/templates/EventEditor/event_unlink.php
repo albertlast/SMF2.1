@@ -23,11 +23,9 @@ if (!defined('SMF')) {
  * Template for unlinking a topic and an event.
  */
 ?><?php if (empty(Utils::$context['event']->topic) || empty(Config::$modSettings['cal_allow_unlinked'])): ?><?php return; ?><?php endif; ?>
-
 					<dl>
 						<dt class="clear">
 							<?= Lang::getTxt('calendar_unlink', file: 'Calendar') ?>
-
 						</dt>
 						<dd>
 							<input type="checkbox" name="unlink">

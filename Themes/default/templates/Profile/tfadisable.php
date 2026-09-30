@@ -25,7 +25,6 @@ if (!defined('SMF')) {
  * Template for disabling two-factor authentication.
  */
 ?>
-
 			<div class="cat_bar">
 				<h3 class="catbg"><?= Lang::getTxt('tfadisable', file: 'Profile') ?></h3>
 			</div>
@@ -39,7 +38,6 @@ if (!defined('SMF')) {
 <?php else: ?>
 					<div class="smalltext">
 						<?= Lang::getTxt('tfa_disable_for_user', ['name' => User::$me->name], file: 'Profile') ?>
-
 					</div>
 <?php endif; ?>
 					<input type="submit" name="save" value="<?= Lang::getTxt('tfa_disable', file: 'Profile') ?>" class="button floatright">

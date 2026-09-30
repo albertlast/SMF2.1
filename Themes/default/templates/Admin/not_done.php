@@ -23,11 +23,9 @@ if (!defined('SMF')) {
  * This is the page shown when we've temporarily paused things such as during maintenance tasks, sending newsletters, etc.
  */
 ?>
-
 						<div id="section_header" class="cat_bar">
 							<h3 class="catbg">
 								<?= Lang::getTxt('not_done_title', file: 'Admin') ?>
-
 							</h3>
 						</div>
 						<div class="windowbg">
@@ -52,7 +50,6 @@ if (!defined('SMF')) {
 <?php endif; ?>
 								<input type="submit" name="cont" value="<?= Lang::getTxt('not_done_continue', file: 'Admin') ?>" class="button">
 								<?= Utils::$context['continue_post_data'] ?>
-
 							</form>
 						</div><!-- .windowbg -->
 					<script>

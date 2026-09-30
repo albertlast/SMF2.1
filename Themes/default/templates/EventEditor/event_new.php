@@ -24,7 +24,6 @@ if (!defined('SMF')) {
  * Template for entering info about a new event.
  */
 ?><?php /* If user cannot create new events, skip this. */ ?><?php if (!User::$me->allowedTo('calendar_post')): ?><?php return; ?><?php endif; ?><?php /* Basic event info */ ?>
-
 					<div id="event_new">
 						<dl id="event_basic_info">
 							<dt class="clear">
@@ -41,7 +40,6 @@ if (!defined('SMF')) {
 								<input type="text" name="event_location" id="event_location" maxlength="255" value="<?= Utils::$context['event']->selected_occurrence->location ?>">
 							</dd>
 						</dl><?php /* Date and time info. */ ?>
-
 						<hr class="clear">
 						<dl id="event_date_and_time">
 							<dt class="clear">
@@ -75,13 +73,9 @@ if (!defined('SMF')) {
 // Setting max-width on selects inside floating elements can be flaky,
 // so we need to calculate the width value manually.
 ?>
-
 								<select name="tz" id="tz"<?= !empty(Utils::$context['event']->allday) || !empty(Utils::$context['event']->special_rrule) ? ' disabled' : '' ?><?= !empty(Utils::$context['event']->special_rrule) ? ' data-force-disabled' : '' ?> style="width:min(<?= max(array_map(fn($tzname) => Utils::entityStrlen($tzname), Utils::$context['all_timezones'])) * 0.9 ?>ch, 100%)"><?php foreach (Utils::$context['all_timezones'] as $tz => $tzname): ?>
-
 									<option<?= is_numeric($tz) ? ' value="" disabled' : ' value="' . $tz . '"' ?><?= $tz === Utils::$context['event']->selected_occurrence->tz ? ' selected' : '' ?>><?= $tzname ?></option><?php endforeach; ?>
-
 								</select>
 							</dd>
 						</dl><?php /* If this is a new event or the first occurrence of an existing event, show the RRULE stuff. */ ?><?php if (Utils::$context['event']->new || Utils::$context['event']->selected_occurrence->is_first): ?><?php $this->subTemplate('rrule'); ?><?php else: ?><?php $this->subTemplate('occurrence_options'); ?><?php endif; ?>
-
 					</div>

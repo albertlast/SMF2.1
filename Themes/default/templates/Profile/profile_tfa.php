@@ -24,7 +24,6 @@ if (!defined('SMF')) {
  * Simple template for showing the 2FA area when editing a profile.
  */
 ?>
-
 							<dt>
 								<strong><?= Lang::getTxt('tfa_profile_label', file: 'Profile') ?></strong><br>
 								<div class="smalltext"><?= Lang::getTxt('tfa_profile_desc', file: 'Profile') ?></div>

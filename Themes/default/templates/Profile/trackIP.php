@@ -25,7 +25,6 @@ if (!defined('SMF')) {
 // This function always defaults to the last IP used by a member but can be set to track any IP.
 // The first table in the template gives an input box to allow the admin to enter another IP to track.
 ?>
-
 		<div class="cat_bar">
 			<h3 class="catbg"><?= Lang::getTxt('trackIP', file: 'Profile') ?></h3>
 		</div>
@@ -43,25 +42,19 @@ if (!defined('SMF')) {
 			</form>
 		</div>
 		<br><?php /* The table inbetween the first and second table shows links to the whois server for every region. */ ?><?php if (Utils::$context['single_ip']): ?>
-
 		<div class="cat_bar">
 			<h3 class="catbg"><?= Lang::getTxt('whois_title', Utils::$context, file: 'Profile') ?></h3>
 		</div>
 		<div class="windowbg"><?php foreach (Utils::$context['whois_servers'] as $server): ?>
-
 			<a href="<?= $server['url'] ?>" target="_blank" rel="noopener"><?= $server['name'] ?></a><br><?php endforeach; ?>
-
 		</div>
 		<br><?php endif; ?><?php /* The second table lists all the members who have been logged as using this IP address. */ ?>
-
 		<div class="cat_bar">
 			<h3 class="catbg"><?= Lang::getTxt('members_from_ip', Utils::$context, file: 'Profile') ?></h3>
 		</div><?php if (empty(Utils::$context['ips'])): ?>
-
 		<p class="windowbg description">
 			<em><?= Lang::getTxt('no_members_from_ip', file: 'Profile') ?></em>
 		</p><?php else: ?>
-
 		<table class="table_grid">
 			<thead>
 				<tr class="title_bar">
@@ -70,13 +63,10 @@ if (!defined('SMF')) {
 				</tr>
 			</thead>
 			<tbody><?php /* Loop through each of the members and display them. */ ?><?php foreach (Utils::$context['ips'] as $ip => $memberlist): ?>
-
 				<tr class="windowbg">
 					<td><a href="<?= Utils::$context['base_url'] ?>;searchip=<?= $ip ?>"><?= $ip ?></a></td>
 					<td><?= implode(', ', $memberlist) ?></td>
 				</tr><?php endforeach; ?>
-
 			</tbody>
 		</table><?php endif; ?>
-
 		<br><?php $this->subTemplate('show_list', ['list_id' => 'track_message_list']); ?><br><?php $this->subTemplate('show_list', ['list_id' => 'track_user_list']); ?><?php /* 3rd party integrations may have added additional tracking. */ ?><?php if (!empty(Utils::$context['additional_track_lists'])): ?><?php foreach (Utils::$context['additional_track_lists'] as $list): ?><br><?php $this->subTemplate('show_list', ['list_id' => $list]); ?><?php endforeach; ?><?php endif; ?>

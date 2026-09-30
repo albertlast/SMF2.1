@@ -33,28 +33,24 @@ if (!defined('SMF')) {
 								<input type="radio" name="avatar_choice" id="avatar_choice_none" value="none"<?= (Utils::$context['member']['avatar']['choice'] == 'none' ? ' checked="checked"' : '') ?>>
 								<label for="avatar_choice_none"<?= (isset(Utils::$context['modify_error']['bad_avatar']) ? ' class="error"' : '') ?>>
 									<?= Lang::getTxt('no_avatar', file: 'Profile') ?>
-
 								</label><br>
 <?php endif; ?>
 <?php if (!empty(Utils::$context['member']['avatar']['allow_server_stored'])): ?>
 								<input type="radio" name="avatar_choice" id="avatar_choice_server_stored" value="server_stored"<?= (Utils::$context['member']['avatar']['choice'] == 'server_stored' ? ' checked="checked"' : '') ?>>
 								<label for="avatar_choice_server_stored"<?= (isset(Utils::$context['modify_error']['bad_avatar']) ? ' class="error"' : '') ?>>
 									<?= Lang::getTxt('choose_avatar_gallery', file: 'Profile') ?>
-
 								</label><br>
 <?php endif; ?>
 <?php if (!empty(Utils::$context['member']['avatar']['allow_external'])): ?>
 								<input type="radio" name="avatar_choice" id="avatar_choice_external" value="external"<?= (Utils::$context['member']['avatar']['choice'] == 'external' ? ' checked="checked"' : '') ?>>
 								<label for="avatar_choice_external"<?= (isset(Utils::$context['modify_error']['bad_avatar']) ? ' class="error"' : '') ?>>
 									<?= Lang::getTxt('my_own_pic', file: 'Profile') ?>
-
 								</label><br>
 <?php endif; ?>
 <?php if (!empty(Utils::$context['member']['avatar']['allow_upload'])): ?>
 								<input type="radio" name="avatar_choice" id="avatar_choice_upload" value="upload"<?= (Utils::$context['member']['avatar']['choice'] == 'upload' ? ' checked="checked"' : '') ?>>
 								<label for="avatar_choice_upload"<?= (isset(Utils::$context['modify_error']['bad_avatar']) ? ' class="error"' : '') ?>>
 									<?= Lang::getTxt('avatar_will_upload', file: 'Profile') ?>
-
 								</label><br>
 <?php endif; ?>
 <?php if (!empty(Utils::$context['member']['avatar']['allow_gravatar'])): ?>
@@ -95,9 +91,7 @@ if (!defined('SMF')) {
 <?php if (!empty(Utils::$context['member']['avatar']['allow_external'])): ?>
 								<div id="avatar_external" data-avatar-choice="external">
 									<?= Utils::$context['member']['avatar']['choice'] == 'external' ? '<div class="edit_avatar_img"><img src="' . Utils::$context['member']['avatar']['href'] . '" alt="" class="avatar"></div>' : '' ?>
-
 									<div class="smalltext"><?= Lang::getTxt('avatar_by_url', file: 'Profile') ?></div><?= !empty(Config::$modSettings['avatar_action_too_large']) && Config::$modSettings['avatar_action_too_large'] == 'option_download_and_resize' ? $this->fetchSubTemplate('max_size', ['type' => 'external']) : '' ?>
-
 									<input type="text" name="userpicpersonal" size="45" value="<?= ((stristr(Utils::$context['member']['avatar']['external'], 'http://') || stristr(Utils::$context['member']['avatar']['external'], 'https://')) ? Utils::$context['member']['avatar']['external'] : 'http://') ?>"><br>
 								</div>
 <?php endif; ?>
@@ -105,11 +99,8 @@ if (!defined('SMF')) {
 <?php if (!empty(Utils::$context['member']['avatar']['allow_upload'])): ?>
 								<div id="avatar_upload" data-avatar-choice="upload">
 									<?= Utils::$context['member']['avatar']['choice'] == 'upload' ? '<div class="edit_avatar_img"><img src="' . Utils::$context['member']['avatar']['href'] . '" alt=""></div>' : '' ?>
-
 									<input type="file" size="44" name="attachment" id="avatar_upload_box" value="" accept="image/gif, image/jpeg, image/jpg, image/png, image/svg+xml, image/webp"><?php $this->subTemplate('max_size', ['type' => 'upload']); ?>
-
 									<?= (!empty(Utils::$context['member']['avatar']['id_attach']) ? '<br><input type="hidden" name="id_attach" value="' . Utils::$context['member']['avatar']['id_attach'] . '">' : '') ?>
-
 								</div>
 <?php endif; ?>
 <?php /* if the user is able to use Gravatar avatars show then the image preview */ ?>

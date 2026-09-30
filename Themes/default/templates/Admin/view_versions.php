@@ -23,11 +23,9 @@ if (!defined('SMF')) {
  * Displays information about file versions installed, and compares them to current version.
  */
 ?>
-
 						<div id="section_header" class="cat_bar">
 							<h3 class="catbg">
 								<?= Lang::getTxt('admin_version_check', file: 'Admin') ?>
-
 							</h3>
 						</div>
 						<div class="information"><?= Lang::getTxt('version_check_desc', file: 'Admin') ?></div>
@@ -51,7 +49,6 @@ if (!defined('SMF')) {
 									<tr class="windowbg">
 										<td class="half_table">
 											<?= Lang::getTxt('admin_smfpackage', file: 'Admin') ?>
-
 										</td>
 										<td class="quarter_table">
 											<em id="yourSMF"><?= Utils::$context['forum_version'] ?></em>
@@ -82,7 +79,6 @@ if (!defined('SMF')) {
 									<tr class="windowbg">
 										<td class="half_table">
 											<?= $filename ?>
-
 										</td>
 										<td class="quarter_table">
 											<em id="yourRoot<?= $filename ?>"><?= $version ?></em>
@@ -118,7 +114,6 @@ if (!defined('SMF')) {
 									<tr class="windowbg">
 										<td class="half_table">
 											<?= $filename ?>
-
 										</td>
 										<td class="quarter_table">
 											<em id="yourSources<?= $filename ?>"><?= $version ?></em>
@@ -154,7 +149,6 @@ if (!defined('SMF')) {
 									<tr class="windowbg">
 										<td class="half_table">
 											<?= $filename ?>
-
 										</td>
 										<td class="quarter_table">
 											<em id="yourDefault<?= $filename ?>"><?= $version ?></em>
@@ -191,7 +185,6 @@ if (!defined('SMF')) {
 									<tr class="windowbg">
 										<td class="half_table">
 											<em><?= $language ?></em>/<?= $filename ?>
-
 										</td>
 										<td class="quarter_table">
 											<em id="yourLanguage_<?= $language ?>_<?= $filename ?>"><?= $version ?></em>
@@ -228,7 +221,6 @@ if (!defined('SMF')) {
 									<tr class="windowbg">
 										<td class="half_table">
 											<?= $filename ?>
-
 										</td>
 										<td class="quarter_table">
 											<em id="yourTemplates<?= $filename ?>"><?= $version ?></em>
@@ -265,7 +257,6 @@ if (!defined('SMF')) {
 									<tr class="windowbg">
 										<td class="half_table">
 											<?= $filename ?>
-
 										</td>
 										<td class="quarter_table">
 											<em id="yourTasks<?= $filename ?>"><?= $version ?></em>

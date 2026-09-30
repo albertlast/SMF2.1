@@ -23,7 +23,6 @@ if (!defined('SMF')) {
  * Personal Message settings.
  */
 ?>
-
 					<dt>
 						<label for="pm_prefs"><?= Lang::getTxt('pm_display_mode', file: 'Profile') ?></label>
 					</dt>
