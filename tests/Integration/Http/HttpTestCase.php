@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SMF\Tests\Integration\Http;
 
+use SMF\Db\DatabaseApi as Db;
 use SMF\Tests\Integration\IntegrationTestCase;
 use SMF\Tests\Support\HttpClient;
 use SMF\Tests\Support\HttpResponse;
@@ -20,20 +21,6 @@ use SMF\Tests\Support\HttpResponse;
  */
 abstract class HttpTestCase extends IntegrationTestCase
 {
-	/*****************
-	 * Class constants
-	 *****************/
-
-	/**
-	 * How long to wait out flood control, in seconds.
-	 *
-	 * Security::spamProtection() allows a moderator one login, post or search
-	 * every two seconds, counted per IP address - and every test here arrives
-	 * from the same one, back to back, far faster than a person would. Three
-	 * seconds clears the two second window with room to spare.
-	 */
-	protected const FLOOD_WAIT = 3;
-
 	/*********************
 	 * Internal properties
 	 *********************/
@@ -95,20 +82,30 @@ abstract class HttpTestCase extends IntegrationTestCase
 	{
 		parent::setUp();
 
-		$this->http = new HttpClient();
+		$this->http = $this->client();
+	}
 
-		// Arrive at the forum before doing anything else, which is what a person
-		// does and what the tests below depend on.
-		//
-		// The very first request of a new session regenerates it - SMF sets a
-		// guest login cookie, and Cookie::setLoginCookie() throws the session
-		// away and starts another whenever that value changes. Anything minted
-		// earlier in that same request is minted against the session that just
-		// went away, so a security token taken from the first page a visitor
-		// ever sees can never be validated. Posting that form comes back 403,
-		// "Token verification failed", with nothing to suggest the token was
-		// fine and the session underneath it was not.
-		$this->http->get('');
+	/**
+	 * A browser for the test, which has already arrived at the forum.
+	 *
+	 * Arriving before doing anything else is what a person does, and what the
+	 * tests depend on. The very first request of a new session regenerates it -
+	 * SMF sets a guest login cookie, and Cookie::setLoginCookie() throws the
+	 * session away and starts another whenever that value changes. Anything
+	 * minted earlier in that same request is minted against the session that
+	 * just went away, so a security token taken from the first page a visitor
+	 * ever sees can never be validated. Posting that form comes back 403,
+	 * "Token verification failed", with nothing to suggest the token was fine
+	 * and the session underneath it was not.
+	 *
+	 * @return HttpClient The browser.
+	 */
+	protected function client(): HttpClient
+	{
+		$http = new HttpClient();
+		$http->get('');
+
+		return $http;
 	}
 
 	/**
@@ -121,13 +118,10 @@ abstract class HttpTestCase extends IntegrationTestCase
 	 */
 	protected function signInAsAdmin(): HttpResponse
 	{
-		$response = $this->attemptSignIn();
-
-		if (self::isThrottled($response)) {
-			sleep(self::FLOOD_WAIT);
-
-			$response = $this->attemptSignIn();
-		}
+		$response = $this->submitForm($this->fetch('?action=login'), [
+			'user' => self::adminName(),
+			'passwrd' => self::adminPassword(),
+		], '//form[contains(@action, "action=login2")]');
 
 		// A password that does not match is a misconfigured forum rather than a
 		// regression, and failing every test in the file over it would say
@@ -150,12 +144,7 @@ abstract class HttpTestCase extends IntegrationTestCase
 	}
 
 	/**
-	 * Submits a form, waiting out flood control if it gets in the way.
-	 *
-	 * Tests do in half a second what a person would take a minute over, so they
-	 * trip SMF's flood protection routinely. That is the forum working, not a
-	 * regression, and the difference between a suite people trust and one that
-	 * fails now and then for reasons nobody can reproduce.
+	 * Submits a form, with flood control out of the way.
 	 *
 	 * @param HttpResponse $page The page holding the form.
 	 * @param array $overrides Values to change or add, including the button.
@@ -164,17 +153,30 @@ abstract class HttpTestCase extends IntegrationTestCase
 	 */
 	protected function submitForm(HttpResponse $page, array $overrides, string $xpath): HttpResponse
 	{
-		$response = $this->http->submit($page, $overrides, $xpath);
+		$this->forgetFloodControl();
 
-		if (!self::isThrottled($response)) {
-			return $response;
-		}
+		return $this->http->submit($page, $overrides, $xpath);
+	}
 
-		sleep(self::FLOOD_WAIT);
-
-		// The page has to be fetched again rather than resubmitted: its security
-		// token was spent on the attempt that just bounced.
-		return $this->http->submit($this->http->get($page->url), $overrides, $xpath);
+	/**
+	 * Forgets every recent login, post and search the forum is counting.
+	 *
+	 * Security::spamProtection() allows a moderator one login, post or search
+	 * every two seconds, counted per IP address, by keeping a row for each in
+	 * log_floodcontrol until it is old enough. Every test here arrives from the
+	 * same address, back to back, far faster than a person would, and being
+	 * turned away for it is the forum working rather than a regression. With
+	 * the rows gone there is nothing to wait out.
+	 *
+	 * The table only ever holds the last few seconds, so clearing all of it
+	 * takes nothing from anybody else.
+	 */
+	protected function forgetFloodControl(): void
+	{
+		Db::$db->query(
+			'DELETE FROM {db_prefix}log_floodcontrol',
+			[],
+		);
 	}
 
 	/**
@@ -237,38 +239,5 @@ abstract class HttpTestCase extends IntegrationTestCase
 			$response->xpath('//*[contains(@class, "errorbox")]')->length,
 			$where . ' rendered an error box: ' . $response->errorText(),
 		);
-	}
-
-	/**
-	 * One go at the login form.
-	 *
-	 * @return HttpResponse The response to the post.
-	 */
-	private function attemptSignIn(): HttpResponse
-	{
-		$form = $this->fetch('?action=login');
-
-		return $this->http->submit($form, [
-			'user' => self::adminName(),
-			'passwrd' => self::adminPassword(),
-		], '//form[contains(@action, "action=login2")]');
-	}
-
-	/*************************
-	 * Internal static methods
-	 *************************/
-
-	/**
-	 * Whether a response is SMF turning us away for going too fast.
-	 *
-	 * @param HttpResponse $response The response to look at.
-	 * @return bool Whether flood control rejected it.
-	 */
-	protected static function isThrottled(HttpResponse $response): bool
-	{
-		$error = $response->errorText();
-
-		return str_contains($error, 'You will have to wait')
-			|| str_contains($error, 'The last posting from your IP');
 	}
 }
